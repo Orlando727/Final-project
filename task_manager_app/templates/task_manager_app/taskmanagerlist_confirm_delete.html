@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Удалить список</h3>
+
+<p>Вы уверены что хотите удалить данный список <i>{{ object.title }}</i>?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Да, удалить.">
+</form>
+<input value="Отмена" type="button" onclick="location.href='{% url "index" %}';">
+
+{% endblock %}

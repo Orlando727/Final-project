@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!--index.html-->
+{% if object_list %}
+<h3>Все мои списки дел</h3>
+{% endif %}
+<ul>
+    {% for task_manager_list in object_list %}
+    <li>
+        <div
+            role="button"
+            onclick="location.href='{% url "list" task_manager_list.id %}'">
+            {{ task_manager_list.title }}
+        </div>
+    </li>
+    {% empty %}
+    <h4>У вас нет списка дел!</h4>
+    {% endfor %}
+</ul>
+<p>
+    <input
+        value="Создать новый список дел"
+        type="button"
+        onclick="location.href='{% url "list-add" %}'"/>
+</p>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>Удалить данную задачу</h3>
+
+<p>Вы уверенны что хотите удалить задачу: <b>{{ object.title }}</b>
+   from the list <i>{{ task_manager_list.title }}</i>?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <input
+        value="ДА, удалить."
+        type="submit">
+    <input
+        value="Отменить"
+        type="button"
+        onclick="location.href='{% url "list" task_manager_list.id %}';">
+</form>
+
+{% endblock %}

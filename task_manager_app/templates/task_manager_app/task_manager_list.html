@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <div>
+        <div>
+            <h3>Изменить список дел:</h3>
+            <h5>{{ task_manager_list.title|upper}}</h5>
+        </div>
+        <ul>
+            {% for task in object_list %}
+            <li>
+                <div>
+                    <div role="button" onclick="location.href='{% url "item-update" task_manager_list.id task.id %}'">
+                        {{ task.title }}
+                        (До {{ task.due_date| date:"l, F j" }})
+                    </div>
+            </li>
+            {% empty %}
+            <p>В списке дел нет задач.</p>
+            {% endfor %}
+        </ul>
+        <p>
+            <input value="Добавьте новою задачу" type="button" onclick="location.href='{% url "item-add" task_manager_list.id %}'" />
+            <input value="Удалить этот список" type="button"
+                onclick="location.href='{% url "list-delete" task_manager_list.id %}'" />
+        </p>
+    </div>
+</div>
+{% endblock %}
